@@ -1,0 +1,16 @@
+# Программы и локальные сборки
+/bin/
+/release/
+/build/
+/build-*/
+*.spec
+*.lnk
+/set_desktop_icon.ps1
+
+# Python и локальные настройки
+__pycache__/
+*.py[cod]
+.venv/
+.idea/
+.vscode/
+.DS_Store
