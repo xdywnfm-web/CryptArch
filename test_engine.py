@@ -11,7 +11,7 @@ import engine
 class EngineTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
-        self.root = Path(self.tmp.name)
+        self.root = Path(self.tmp.name).resolve()
         self.src = self.root / "source"
         self.src.mkdir()
         self.out = self.src / "compressed"

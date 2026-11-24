@@ -1,84 +1,40 @@
-<p align="center">
-  <img src="assets/CryptArch.png" width="128" alt="Логотип CryptArch">
-</p>
+<img src="assets/CryptArch.png" alt="" width="76" align="right">
 
-<h1 align="center">CryptArch</h1>
+# CryptArch
 
-<p align="center">
-  Простая программа для сжатия видео на Windows.<br>
-  Выберите файл или папку, настройте качество и сохраните результат.
-</p>
+Compress a video or an entire folder on Windows. CryptArch keeps the originals untouched and preserves the folder structure in the output.
 
----
+**[Download V2 Beta](https://github.com/xdywnfm-web/CryptArch/releases/tag/v2.0.0-beta.1)** · [Stable v1.0.1](https://github.com/xdywnfm-web/CryptArch/releases/tag/v1.0.1) · **[Читать по-русски](README.ru.md)**
 
-## Скачать
+![CryptArch V2 Beta home screen](assets/v2-preview.png)
 
-**[Скачать установщик для Windows](https://github.com/xdywnfm-web/CryptArch/releases/latest)** — для тех, кому лень компилировать программу самостоятельно.
+## What it does
 
-Откройте страницу релиза, скачайте `CryptArch-Setup.exe` и запустите его. Установщик предложит создать ярлык на рабочем столе и запросит права администратора. Программа не подписана цифровым сертификатом, поэтому Windows может показать предупреждение о неизвестном издателе.
+- Compress using H.264 or H.265, with three quality presets and your choice of CPU or a supported NVIDIA, AMD or Intel GPU.
+- Process 2, 4 or 8 videos in parallel, with progress, an estimated time and pause, resume and cancel controls.
+- Set the output folder, review the current batch in the queue and see how output sizes compare with the originals.
+- Switch the app between English and Russian in **Settings → Interface language**. The choice is saved.
 
-Это первая публичная версия: возможны ошибки и недоработки. Проект может развиваться и получать исправления; об обнаруженных проблемах можно рассказать во вкладке **Issues**.
+CryptArch writes MP4 files and does not overwrite existing output. Multiple audio tracks are mixed into one, so alternate languages or commentary will play together. Subtitles and extra video tracks are not carried over.
 
-## Возможности
+## Install on Windows
 
-- **Файл или папка** — видео во вложенных папках обрабатываются с сохранением структуры.
-- **Три уровня качества** — высокое качество, баланс и максимальное сжатие.
-- **H.264 и H.265** — выбор между совместимостью и более эффективным сжатием.
-- **CPU или GPU** — аппаратное кодирование через NVIDIA, AMD или Intel при поддержке драйвера и кодека.
-- **Параллельная обработка** — 2, 4 или 8 видео одновременно, с предупреждением о высокой нагрузке.
-- **Прогресс и отчёт** — примерное оставшееся время, изменение размера в процентах и список ошибок или файлов, ставших больше.
-- **Звук в одной дорожке** — все аудиодорожки объединяются для совместимости с проигрывателями.
+Run `CryptArch-V2-Beta-Setup.exe` from the beta release. It installs separately from v1, normally without administrator rights. Internet access is required during setup to download the pinned FFmpeg build and verify its SHA-256 checksum. The installer is unsigned, so Windows may show a publisher warning.
 
-Оригиналы не изменяются и не удаляются. Существующие файлы результата не перезаписываются. Обработку можно приостановить или отменить.
+V2 Beta is a preview for Windows 10/11 x64. Report issues or suggest improvements in [Issues](https://github.com/xdywnfm-web/CryptArch/issues).
 
-## Как пользоваться
+## Build from source
 
-1. Откройте CryptArch и выберите видеофайл или папку.
-2. Выберите качество, кодек, CPU или GPU и количество параллельных задач.
-3. При необходимости измените папку результата и нажмите **«Начать сжатие»**.
-4. Дождитесь отчёта и просмотрите получившиеся видео.
-
-Результат сохраняется в MP4. По умолчанию рядом с исходником создаётся папка `compressed`. В отчёте сравниваются размеры только успешно обработанных видео.
-
-> **Важно:** все аудиодорожки смешиваются. Разные языки, комментарии и дублирующие дорожки будут звучать одновременно; баланс и громкость могут измениться. Субтитры, вложения и дополнительные видеодорожки в результат не переносятся. Программа не выполняет полную проверку готового видео — просмотрите его перед самостоятельным удалением оригинала.
-
-## Требования
-
-- Windows 10 или 11, 64-битная версия.
-- Для режима GPU — поддерживаемая видеокарта NVIDIA, AMD или Intel и подходящий драйвер. Доступность зависит от устройства и выбранного кодека.
-- Достаточно свободного места для новых файлов. Результат может оказаться больше исходного видео.
-
-## Запуск из исходного кода
-
-Потребуются Python 3.14 с поддержкой Tkinter и Windows-сборка FFmpeg с `ffmpeg.exe`, `ffprobe.exe`, кодировщиками `libx264`, `libx265` и, при необходимости, аппаратными кодировщиками.
-
-1. Склонируйте или скачайте репозиторий.
-2. Скачайте подходящую [сборку FFmpeg для Windows](https://www.gyan.dev/ffmpeg/builds/) и поместите `ffmpeg.exe` и `ffprobe.exe` в папку `bin` проекта. При запуске из исходного кода также можно использовать FFmpeg из `PATH`.
-3. В PowerShell откройте папку проекта и выполните:
-
-   ```powershell
-   python app.py
-   ```
-
-FFmpeg не хранится в этом репозитории. Приложение запускает его как внешнюю программу.
-
-## Сборка для распространения
-
-Для сборки `.exe` нужны Python 3.14, зависимости из `requirements-dev.txt`, иконка из `assets` и оба файла FFmpeg **в папке `bin`**. Для установщика дополнительно понадобится [Inno Setup 6](https://jrsoftware.org/isinfo.php).
+The desktop app uses C# / WPF. It runs an isolated Python worker that invokes FFmpeg. You need Windows x64, Python 3.14, PyInstaller and the .NET Framework compiler included with Windows. Install Inno Setup 6 to build the installer.
 
 ```powershell
 python -m pip install -r requirements-dev.txt
-python -m unittest -v
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\build-installer.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\WPF\build.ps1 -ExternalFfmpeg
+powershell -NoProfile -ExecutionPolicy Bypass -File .\WPF\build-installer.ps1
 ```
 
-Портативная сборка появится в `release\CryptArch-icon`, установщик — в `release\CryptArch-Setup.exe`. Для переноса портативной версии нужна вся папка целиком. Перед повторной сборкой выберите другое место или самостоятельно уберите старую сборку: скрипт не перезаписывает существующую папку релиза.
+The installer is written to `release\CryptArch-V2-Beta-Setup.exe`. To run a build locally without the installer, put `ffmpeg.exe` and `ffprobe.exe` in `bin`, then build without `-ExternalFfmpeg`, or make both tools available on `PATH`. Use `python -m unittest -v test_engine` to run the engine tests with FFmpeg available.
 
-Для тестов с интерфейсом нужен доступный рабочий стол Windows. Тест GPU пропускается, если подходящий аппаратный кодировщик недоступен.
+## License
 
-## Лицензии
-
-Исходный код CryptArch распространяется по лицензии [MIT](LICENSE).
-
-FFmpeg и сторонние библиотеки распространяются отдельно на собственных условиях. Для сборок Gyan.dev действует GPLv3; сведения о сборке, версиях библиотек и ссылке на исходный код FFmpeg приведены в [FFMPEG-README.txt](FFMPEG-README.txt), текст лицензии — в [FFMPEG-LICENSE.txt](FFMPEG-LICENSE.txt). При распространении собранного приложения необходимо соблюдать лицензии всех включённых компонентов.
+CryptArch source is [MIT-licensed](LICENSE). FFmpeg is a separate dependency; the installer fetches it from [Gyan.dev's published release](https://github.com/GyanD/codexffmpeg/releases/tag/9.0.2). FFmpeg's license and build information are installed with the downloaded tools.
